@@ -14,7 +14,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
 
 export default function CartPage() {
-  const { state, dispatch } = useCart();
+  const { items, total, addItem, removeItem, updateQuantity, clearCart } = useCart();
   const { toast } = useToast();
   const [customerInfo, setCustomerInfo] = useState({
     name: '',
@@ -26,16 +26,16 @@ export default function CartPage() {
   const [deliveryMethod, setDeliveryMethod] = useState('post');
   const [paymentMethod, setPaymentMethod] = useState('cash');
 
-  const updateQuantity = (productId: string, newQuantity: number) => {
+  const handleUpdateQuantity = (productId: string, newQuantity: number) => {
     if (newQuantity <= 0) {
-      dispatch({ type: 'REMOVE_FROM_CART', productId });
+      removeItem(productId);
     } else {
-      dispatch({ type: 'UPDATE_QUANTITY', productId, quantity: newQuantity });
+      updateQuantity(productId, newQuantity);
     }
   };
 
-  const removeFromCart = (productId: string) => {
-    dispatch({ type: 'REMOVE_FROM_CART', productId });
+  const handleRemoveFromCart = (productId: string) => {
+    removeItem(productId);
     toast({
       title: 'Removed from cart',
       description: 'Item has been removed from your cart.',
@@ -62,7 +62,7 @@ export default function CartPage() {
     });
 
     // Clear cart
-    dispatch({ type: 'CLEAR_CART' });
+    clearCart();
     
     // Reset form
     setCustomerInfo({
@@ -74,7 +74,7 @@ export default function CartPage() {
     });
   };
 
-  if (state.items.length === 0) {
+  if (items.length === 0) {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="text-center max-w-md mx-auto">
@@ -98,7 +98,7 @@ export default function CartPage() {
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Cart Items */}
         <div className="lg:col-span-2 space-y-4">
-          {state.items.map((item) => (
+          {items.map((item) => (
             <Card key={item.id}>
               <CardContent className="p-4">
                 <div className="flex gap-4">
@@ -118,7 +118,7 @@ export default function CartPage() {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
                         >
                           <Minus className="w-4 h-4" />
                         </Button>
@@ -126,7 +126,7 @@ export default function CartPage() {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
                         >
                           <Plus className="w-4 h-4" />
                         </Button>
@@ -134,7 +134,7 @@ export default function CartPage() {
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => removeFromCart(item.id)}
+                        onClick={() => handleRemoveFromCart(item.id)}
                         className="text-red-600 hover:text-red-700"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -161,12 +161,12 @@ export default function CartPage() {
             <CardContent>
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span>Subtotal ({state.items.reduce((sum, item) => sum + item.quantity, 0)} items)</span>
-                  <span>${state.total.toFixed(2)}</span>
+                  <span>Subtotal ({items.reduce((sum, item) => sum + item.quantity, 0)} items)</span>
+                  <span>${total.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between font-bold text-lg border-t pt-2">
                   <span>Total</span>
-                  <span>${state.total.toFixed(2)}</span>
+                  <span>${total.toFixed(2)}</span>
                 </div>
               </div>
             </CardContent>
