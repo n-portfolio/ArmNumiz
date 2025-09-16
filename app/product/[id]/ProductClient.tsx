@@ -17,7 +17,7 @@ export default function ProductClient() {
   const productId = params?.id as string
   const product = sampleProducts.find((p) => p.id === productId)
   const [quantity, setQuantity] = useState(1)
-  const { dispatch } = useCart()
+  const { addItem } = useCart()
   const { toast } = useToast()
 
   if (!product) {
@@ -35,7 +35,7 @@ export default function ProductClient() {
 
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
-      dispatch({ type: "ADD_TO_CART", product })
+      addItem(product)
     }
     toast({
       title: "Added to cart",

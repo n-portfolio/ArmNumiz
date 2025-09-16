@@ -84,5 +84,28 @@ export const useCart = () => {
   if (!context) {
     throw new Error("useCart must be used within a CartProvider")
   }
-  return context
+
+  const addItem = (product: Product) => {
+    context.dispatch({ type: "ADD_TO_CART", product })
+  }
+
+  const removeItem = (productId: string) => {
+    context.dispatch({ type: "REMOVE_FROM_CART", productId })
+  }
+
+  const updateQuantity = (productId: string, quantity: number) => {
+    context.dispatch({ type: "UPDATE_QUANTITY", productId, quantity })
+  }
+
+  const clearCart = () => {
+    context.dispatch({ type: "CLEAR_CART" })
+  }
+
+  return {
+    ...context.state,
+    addItem,
+    removeItem,
+    updateQuantity,
+    clearCart,
+  }
 }

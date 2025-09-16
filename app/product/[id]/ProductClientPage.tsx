@@ -34,7 +34,7 @@ export default function ProductPage() {
   }
 
   const handleAddToCart = () => {
-    addItem(product, quantity)
+    addItem(product)
     toast({
       title: "Item added to cart",
       description: "You can view your cart in the top right corner.",
