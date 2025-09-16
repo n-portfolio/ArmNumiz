@@ -14,11 +14,11 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const { dispatch } = useCart();
+  const { addItem } = useCart();
   const { toast } = useToast();
 
   const handleAddToCart = () => {
-    dispatch({ type: 'ADD_TO_CART', product });
+    addItem(product);
     toast({
       title: 'Added to cart',
       description: `${product.name} has been added to your cart.`,

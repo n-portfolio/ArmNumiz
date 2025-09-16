@@ -8,7 +8,7 @@ import { useCart } from '@/contexts/CartContext';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { state } = useCart();
+  const { items, total } = useCart();
 
   return (
     <header className="bg-gradient-to-r from-amber-900 to-red-900 text-white shadow-lg">
@@ -70,9 +70,9 @@ export function Header() {
           <div className="flex items-center gap-4">
             <Link href="/cart" className="relative">
               <ShoppingCart className="w-6 h-6 hover:text-amber-300 transition-colors" />
-              {state.items.length > 0 && (
+              {items.length > 0 && (
                 <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  {state.items.reduce((sum, item) => sum + item.quantity, 0)}
+                  {items.reduce((sum, item) => sum + item.quantity, 0)}
                 </span>
               )}
             </Link>
