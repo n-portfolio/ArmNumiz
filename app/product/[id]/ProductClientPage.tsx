@@ -20,7 +20,7 @@ export default function ProductPage() {
   const { toast } = useToast()
 
   if (!product) {
-    return <div>Product not found</div>
+     return <div>Товар не найден</div>
   }
 
   const incrementQuantity = () => {
@@ -36,8 +36,8 @@ export default function ProductPage() {
   const handleAddToCart = () => {
     addItem(product)
     toast({
-      title: "Item added to cart",
-      description: "You can view your cart in the top right corner.",
+        title: "Товар добавлен в корзину",
+        description: "Вы можете просмотреть корзину в правом верхнем углу.",
     })
   }
 
@@ -56,14 +56,14 @@ export default function ProductPage() {
               />
             </div>
             <div className="md:w-1/2">
-              <Link href="/" className="inline-flex items-center mb-4">
-                <ArrowLeft className="mr-2 h-4 w-4" /> Back to Products
-              </Link>
+                <Link href="/" className="inline-flex items-center mb-4">
+                  <ArrowLeft className="mr-2 h-4 w-4" /> Назад к товарам
+                </Link>
               <h1 className="text-2xl font-semibold mb-2">{product.name}</h1>
               <Badge className="mb-4">{product.category}</Badge>
               <p className="text-gray-600 mb-4">{product.description}</p>
               <div className="flex items-center justify-between mb-4">
-                <span className="text-xl font-bold">${product.price}</span>
+                  <span className="text-xl font-bold">{product.price} ₽</span>
                 <button className="text-gray-500 hover:text-gray-700 focus:outline-none">
                   <Heart className="h-5 w-5" />
                 </button>
@@ -74,7 +74,7 @@ export default function ProductPage() {
                   onClick={decrementQuantity}
                   className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-l"
                 >
-                  -
+                    -
                 </button>
                 <input
                   type="number"
@@ -86,13 +86,13 @@ export default function ProductPage() {
                   onClick={incrementQuantity}
                   className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-r"
                 >
-                  +
+                    +
                 </button>
               </div>
 
-              <Button onClick={handleAddToCart} className="w-full">
-                Add to Cart <ShoppingCart className="ml-2 h-4 w-4" />
-              </Button>
+                <Button onClick={handleAddToCart} className="w-full">
+                  Добавить в корзину <ShoppingCart className="ml-2 h-4 w-4" />
+                </Button>
             </div>
           </div>
         </CardContent>

@@ -11,76 +11,76 @@ export function Footer() {
             <div className="flex items-center gap-2 mb-4">
               <Coins className="w-6 h-6 text-amber-400" />
               <div>
-                <h3 className="text-lg font-bold">ArmNumiz</h3>
-                <p className="text-xs text-gray-400">Since 2020</p>
+                <h3 className="text-lg font-bold">My Collection Market</h3>
+                <p className="text-xs text-gray-400">С 2020 года</p>
               </div>
             </div>
             <p className="text-gray-300 text-sm">
-              Your trusted partner for Armenian numismatics, philately, and faleristics. 
-              Discover rare collectibles and build your collection with confidence.
+              Ваш надежный партнер в области нумизматики, филателии и фалеристики. 
+              Откройте для себя редкие коллекционные предметы и пополните свою коллекцию с уверенностью.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h4 className="font-semibold mb-4">Быстрые ссылки</h4>
             <div className="flex flex-col gap-2 text-sm">
               <Link href="/catalog" className="text-gray-300 hover:text-amber-400 transition-colors">
-                Catalog
+                Каталог
               </Link>
               <Link href="/how-to-order" className="text-gray-300 hover:text-amber-400 transition-colors">
-                How to Order
+                Как заказать
               </Link>
               <Link href="/payment" className="text-gray-300 hover:text-amber-400 transition-colors">
-                Payment Methods
+                Способы оплаты
               </Link>
               <Link href="/delivery" className="text-gray-300 hover:text-amber-400 transition-colors">
-                Delivery Info
+                Информация о доставке
               </Link>
             </div>
           </div>
 
           {/* Categories */}
           <div>
-            <h4 className="font-semibold mb-4">Categories</h4>
+            <h4 className="font-semibold mb-4">Категории</h4>
             <div className="flex flex-col gap-2 text-sm">
               <Link href="/catalog?category=coins" className="text-gray-300 hover:text-amber-400 transition-colors">
-                Coins
+                Монеты
               </Link>
               <Link href="/catalog?category=stamps" className="text-gray-300 hover:text-amber-400 transition-colors">
-                Stamps
+                Марки
               </Link>
               <Link href="/catalog?category=medals" className="text-gray-300 hover:text-amber-400 transition-colors">
-                Medals & Badges
+                Медали и значки
               </Link>
               <Link href="/buy-sell" className="text-gray-300 hover:text-amber-400 transition-colors">
-                Buy/Sell Collections
+                Купить/Продать коллекции
               </Link>
             </div>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-semibold mb-4">Contact</h4>
+            <h4 className="font-semibold mb-4">Контакты</h4>
             <div className="flex flex-col gap-3 text-sm">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-amber-400" />
-                <span className="text-gray-300">arm.numiz@mail.ru</span>
+                <span className="text-gray-300">marketmycollection@gmail.com</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-amber-400" />
-                <span className="text-gray-300">+374 55534555</span>
+                <span className="text-gray-300">094598281, 077486483</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-amber-400" />
-                <span className="text-gray-300">Yerevan, Armenia</span>
+                <span className="text-gray-300">Ереван, Армения</span>
               </div>
             </div>
           </div>
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; 2025 ArmNumiz. All rights reserved. | Professional numismatic services since 2020</p>
+          <p>&copy; 2025 My Collection Market. Все права защищены. | Профессиональные нумизматические услуги с 2020 года</p>
         </div>
       </div>
     </footer>

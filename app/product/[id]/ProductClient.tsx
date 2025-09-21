@@ -24,9 +24,9 @@ export default function ProductClient() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Product Not Found</h1>
-          <Link href="/catalog" className="text-white">
-            <Button>Back to Catalog</Button>
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Товар не найден</h1>
+            <Link href="/catalog" className="text-white">
+              <Button>Назад к каталогу</Button>
           </Link>
         </div>
       </div>
@@ -38,8 +38,8 @@ export default function ProductClient() {
       addItem(product)
     }
     toast({
-      title: "Added to cart",
-      description: `${quantity} ${product.name}(s) added to your cart.`,
+        title: "Добавлено в корзину",
+        description: `${quantity} шт. ${product.name} добавлено в вашу корзину.`,
     })
   }
 
@@ -59,11 +59,11 @@ export default function ProductClient() {
   const getCategoryLabel = (category: string) => {
     switch (category) {
       case "coins":
-        return "Coins"
+        return "Монеты"
       case "stamps":
-        return "Stamps"
+        return "Марки"
       case "medals":
-        return "Medals"
+        return "Медали"
       default:
         return category
     }
@@ -74,7 +74,7 @@ export default function ProductClient() {
       <div className="mb-6">
         <Link href="/catalog" className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900">
           <ArrowLeft className="w-4 h-4" />
-          Back to Catalog
+            Назад к каталогу
         </Link>
       </div>
 
@@ -98,13 +98,13 @@ export default function ProductClient() {
         {/* Product Details */}
         <div className="space-y-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
-            <p className="text-2xl font-bold text-amber-600 mb-4">${product.price.toFixed(2)}</p>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
+              <p className="text-2xl font-bold text-amber-600 mb-4">{product.price.toFixed(2)} ₽</p>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-2">Description</h3>
-            <p className="text-gray-700 leading-relaxed">{product.description}</p>
+              <h3 className="text-lg font-semibold mb-2">Описание</h3>
+              <p className="text-gray-700 leading-relaxed">{product.description}</p>
           </div>
 
           <Card>
@@ -112,7 +112,7 @@ export default function ProductClient() {
               <div className="flex items-center gap-4 mb-6">
                 <div>
                   <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-1">
-                    Quantity
+                      Количество
                   </label>
                   <input
                     type="number"
@@ -125,15 +125,15 @@ export default function ProductClient() {
                   />
                 </div>
                 <div className="flex-1">
-                  <div className="text-sm text-gray-600">Total Price</div>
-                  <div className="text-xl font-bold text-amber-600">${(product.price * quantity).toFixed(2)}</div>
+                    <div className="text-sm text-gray-600">Общая стоимость</div>
+                    <div className="text-xl font-bold text-amber-600">{(product.price * quantity).toFixed(2)} ₽</div>
                 </div>
               </div>
 
               <div className="flex gap-4">
                 <Button onClick={handleAddToCart} className="flex-1 bg-red-600 hover:bg-red-700">
                   <ShoppingCart className="w-4 h-4 mr-2" />
-                  Add to Cart
+                    Добавить в корзину
                 </Button>
                 <Button variant="outline" className="px-4 bg-transparent">
                   <Heart className="w-4 h-4" />
@@ -143,23 +143,23 @@ export default function ProductClient() {
           </Card>
 
           <div className="bg-gray-50 rounded-lg p-6">
-            <h3 className="font-semibold mb-3">Product Information</h3>
+              <h3 className="font-semibold mb-3">Информация о товаре</h3>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-600">Category:</span>
+                  <span className="text-gray-600">Категория:</span>
                 <span>{getCategoryLabel(product.category)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Condition:</span>
-                <span>Excellent</span>
+                  <span className="text-gray-600">Состояние:</span>
+                  <span>Отличное</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Authenticity:</span>
-                <span>Verified</span>
+                  <span className="text-gray-600">Подлинность:</span>
+                  <span>Проверено</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Shipping:</span>
-                <span>2-3 business days</span>
+                  <span className="text-gray-600">Доставка:</span>
+                  <span>2-3 рабочих дня</span>
               </div>
             </div>
           </div>

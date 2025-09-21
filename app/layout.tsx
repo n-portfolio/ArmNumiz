@@ -9,8 +9,8 @@ import { Toaster } from '@/components/ui/toaster';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'ArmNumiz - Armenian Numismatics, Philately & Faleristics',
-  description: 'Premium collection of Armenian coins, stamps, and medals. Buy, sell, and discover rare collectibles.',
+  title: 'My Collection Market - Нумизматика, Филателия и Фалеристика',
+  description: 'Премиальная коллекция монет, марок и медалей. Покупайте, продавайте и открывайте редкие коллекционные предметы.',
 };
 
 export default function RootLayout({

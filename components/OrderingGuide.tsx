@@ -5,23 +5,23 @@ export function OrderingGuide() {
   const steps = [
     {
       icon: Search,
-      title: 'Browse & Search',
-      description: 'Explore our catalog or use search to find specific items in our collection.'
+        title: 'Просмотр и поиск',
+        description: 'Изучайте наш каталог или используйте поиск, чтобы найти конкретные предметы в нашей коллекции.'
     },
     {
       icon: ShoppingCart,
-      title: 'Add to Cart',
-      description: 'Select your desired items and add them to your shopping cart.'
+        title: 'Добавить в корзину',
+        description: 'Выберите желаемые товары и добавьте их в корзину.'
     },
     {
       icon: CreditCard,
-      title: 'Choose Payment',
-      description: 'Select from Cash on Delivery, Bank Transfer, or Manual Payment options.'
+        title: 'Выберите способ оплаты',
+        description: 'Выберите оплату при получении, банковский перевод или ручной способ оплаты.'
     },
     {
       icon: Package,
-      title: 'Receive Order',
-      description: 'Choose Post delivery or Pickup from our Yerevan location.'
+        title: 'Получите заказ',
+        description: 'Выберите доставку почтой или самовывоз из нашего офиса в Ереване.'
     }
   ];
 
@@ -30,10 +30,10 @@ export function OrderingGuide() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            How to Order
+              Как заказать
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Simple steps to get your numismatic treasures delivered to your door
+              Простые шаги, чтобы получить ваши нумизматические сокровища на дом
           </p>
         </div>
 

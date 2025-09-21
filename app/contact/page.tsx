@@ -24,17 +24,17 @@ export default function ContactPage() {
     
     if (!formData.name || !formData.email || !formData.message) {
       toast({
-        title: 'Missing information',
-        description: 'Please fill in all required fields.',
+        title: 'Недостающая информация',
+        description: 'Пожалуйста, заполните все обязательные поля.',
         variant: 'destructive',
       });
       return;
     }
 
-    // Here you would typically send the form data to your backend
+    // FormSubmit will handle the form submission
     toast({
-      title: 'Message sent!',
-      description: 'Thank you for your message. We will get back to you within 24 hours.',
+      title: 'Сообщение отправлено!',
+      description: 'Спасибо за ваше сообщение. Мы свяжемся с вами в течение 24 часов.',
     });
 
     // Reset form
@@ -52,10 +52,10 @@ export default function ContactPage() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Contact Us
+            Свяжитесь с нами
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Get in touch with our numismatic experts. We're here to help with all your collecting needs.
+            Свяжитесь с нашими экспертами по нумизматике. Мы здесь, чтобы помочь со всеми вашими потребностями коллекционирования.
           </p>
         </div>
 
@@ -70,9 +70,9 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Email</h3>
-                    <p className="text-gray-600 mb-2">Send us a message anytime</p>
-                    <a href="mailto:arm.numiz@mail.ru" className="text-amber-600 hover:text-amber-700 font-medium">
-                      arm.numiz@mail.ru
+                    <p className="text-gray-600 mb-2">Отправьте нам сообщение в любое время</p>
+                    <a href="mailto:marketmycollection@gmail.com" className="text-amber-600 hover:text-amber-700 font-medium">
+                      marketmycollection@gmail.com
                     </a>
                   </div>
                 </div>
@@ -86,10 +86,14 @@ export default function ContactPage() {
                     <Phone className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-1">Phone</h3>
-                    <p className="text-gray-600 mb-2">Call us during business hours</p>
-                    <a href="tel:+37455534555" className="text-red-600 hover:text-red-700 font-medium">
-                      +374 55534555
+                    <h3 className="font-semibold text-lg mb-1">Телефон</h3>
+                    <p className="text-gray-600 mb-2">Звоните нам в рабочее время</p>
+                    <a href="tel:094598281" className="text-red-600 hover:text-red-700 font-medium">
+                      094598281
+                    </a>
+                    <br />
+                    <a href="tel:077486483" className="text-red-600 hover:text-red-700 font-medium">
+                      077486483
                     </a>
                   </div>
                 </div>
@@ -103,13 +107,13 @@ export default function ContactPage() {
                     <MapPin className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-1">Address</h3>
-                    <p className="text-gray-600 mb-2">Visit us by appointment</p>
+                    <h3 className="font-semibold text-lg mb-1">Адрес</h3>
+                    <p className="text-gray-600 mb-2">Посетите нас по предварительной записи</p>
                     <p className="text-purple-600 font-medium">
-                      Yerevan, Armenia
+                      Ереван, Армения
                     </p>
                     <p className="text-sm text-gray-500 mt-1">
-                      Exact address provided upon appointment
+                      Точный адрес предоставляется после подтверждения встречи
                     </p>
                   </div>
                 </div>
@@ -123,11 +127,11 @@ export default function ContactPage() {
                     <Clock className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-1">Business Hours</h3>
+                    <h3 className="font-semibold text-lg mb-1">Часы работы</h3>
                     <div className="text-gray-600 space-y-1">
-                      <p>Monday - Friday: 10:00 - 18:00</p>
-                      <p>Saturday: 10:00 - 16:00</p>
-                      <p>Sunday: By appointment only</p>
+                      <p>Понедельник - Пятница: 10:00 - 18:00</p>
+                      <p>Суббота: 10:00 - 16:00</p>
+                      <p>Воскресенье: Только по записи</p>
                     </div>
                   </div>
                 </div>
@@ -141,28 +145,34 @@ export default function ContactPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <MessageSquare className="w-6 h-6 text-amber-600" />
-                  Send us a Message
+                  Отправьте нам сообщение
                 </CardTitle>
                 <p className="text-gray-600">
-                  Whether you have questions about our products, need help with an order, or want to sell your collection, we're here to help.
+                  Есть ли у вас вопросы о наших товарах, нужна помощь с заказом или хотите продать свою коллекцию - мы здесь, чтобы помочь.
                 </p>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form action="https://formsubmit.co/marketmycollection@gmail.com" method="POST" className="space-y-6">
+                  <input type="hidden" name="_subject" value="Новое сообщение с сайта My Collection Market" />
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_next" value="https://your-website.com/thank-you" />
+                  
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="name">Full Name *</Label>
+                      <Label htmlFor="name">Полное имя *</Label>
                       <Input
-                        id="name"
+                        id="Имя"
+                        name="name"
                         value={formData.name}
                         onChange={(e) => setFormData({...formData, name: e.target.value})}
                         required
                       />
                     </div>
                     <div>
-                      <Label htmlFor="email">Email Address *</Label>
+                      <Label htmlFor="email">Email адрес *</Label>
                       <Input
                         id="email"
+                        name="Почта"
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -173,48 +183,51 @@ export default function ContactPage() {
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="phone">Phone Number</Label>
+                      <Label htmlFor="phone">Номер телефона</Label>
                       <Input
                         id="phone"
+                        name="Номер телефона"
                         value={formData.phone}
                         onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                        placeholder="+374 XX XXX XXX"
+                        placeholder="094 XXX XXX"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="subject">Subject</Label>
+                      <Label htmlFor="subject">Тема</Label>
                       <select
                         id="subject"
+                        name="Тема"
                         value={formData.subject}
                         onChange={(e) => setFormData({...formData, subject: e.target.value})}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
                       >
-                        <option value="">Select a subject</option>
-                        <option value="general-inquiry">General Inquiry</option>
-                        <option value="product-question">Product Question</option>
-                        <option value="order-help">Order Help</option>
-                        <option value="selling-collection">Selling Collection</option>
-                        <option value="authentication">Authentication Request</option>
-                        <option value="custom-search">Custom Item Search</option>
-                        <option value="other">Other</option>
+                        <option value="">Выберите тему</option>
+                        <option value="general-inquiry">Общий запрос</option>
+                        <option value="product-question">Вопрос о товаре</option>
+                        <option value="order-help">Помощь с заказом</option>
+                        <option value="selling-collection">Продажа коллекции</option>
+                        <option value="authentication">Запрос на аутентификацию</option>
+                        <option value="custom-search">Поиск конкретного товара</option>
+                        <option value="other">Другое</option>
                       </select>
                     </div>
                   </div>
 
                   <div>
-                    <Label htmlFor="message">Message *</Label>
+                    <Label htmlFor="message">Сообщение *</Label>
                     <Textarea
                       id="message"
+                      name="Сообщение"
                       value={formData.message}
                       onChange={(e) => setFormData({...formData, message: e.target.value})}
-                      placeholder="Please describe how we can help you..."
+                      placeholder="Пожалуйста, опишите, как мы можем вам помочь..."
                       rows={6}
                       required
                     />
                   </div>
 
                   <Button type="submit" className="w-full bg-red-600 hover:bg-red-700">
-                    Send Message
+                    Отправить сообщение
                   </Button>
                 </form>
               </CardContent>
@@ -225,30 +238,30 @@ export default function ContactPage() {
         {/* FAQ Section */}
         <Card className="mt-12 bg-gradient-to-r from-amber-50 to-red-50">
           <CardHeader>
-            <CardTitle>Frequently Asked Questions</CardTitle>
+            <CardTitle>Часто задаваемые вопросы</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold mb-2">Do you authenticate items?</h4>
+                <h4 className="font-semibold mb-2">Вы проводите аутентификацию предметов?</h4>
                 <p className="text-gray-600 text-sm mb-4">
-                  Yes, we provide professional authentication services for coins, stamps, and medals. Contact us for pricing.
+                  Да, мы предоставляем профессиональные услуги аутентификации для монет, марок и медалей. Свяжитесь с нами для уточнения цен.
                 </p>
                 
-                <h4 className="font-semibold mb-2">Can you find specific items?</h4>
+                <h4 className="font-semibold mb-2">Можете ли вы найти конкретные предметы?</h4>
                 <p className="text-gray-600 text-sm mb-4">
-                  Absolutely! We have an extensive network and can help you locate specific collectibles. Just describe what you're looking for.
+                  Конечно! У нас есть обширная сеть, и мы можем помочь вам найти конкретные коллекционные предметы. Просто опишите, что вы ищете.
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold mb-2">Do you buy collections?</h4>
+                <h4 className="font-semibold mb-2">Вы покупаете коллекции?</h4>
                 <p className="text-gray-600 text-sm mb-4">
-                  Yes, we're always interested in purchasing quality collections. Use our buy/sell form or contact us directly.
+                  Да, мы всегда заинтересованы в покупке качественных коллекций. Используйте нашу форму покупки/продажи или свяжитесь с нами напрямую.
                 </p>
                 
-                <h4 className="font-semibold mb-2">What about international shipping?</h4>
+                <h4 className="font-semibold mb-2">А как насчет международной доставки?</h4>
                 <p className="text-gray-600 text-sm">
-                  We ship internationally. Contact us for specific shipping costs and delivery times to your location.
+                  Мы осуществляем международную доставку. Свяжитесь с нами для уточнения стоимости доставки и сроков доставки в ваше местоположение.
                 </p>
               </div>
             </div>

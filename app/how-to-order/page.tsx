@@ -4,48 +4,49 @@ import Link from 'next/link';
 
 export default function HowToOrderPage() {
   const steps = [
+    // ...existing code...
     {
       icon: Search,
-      title: 'Browse Our Catalog',
-      description: 'Explore our extensive collection of coins, stamps, and medals. Use our search and filter options to find exactly what you\'re looking for.',
+      title: 'Просмотрите наш каталог',
+      description: 'Изучайте нашу обширную коллекцию монет, марок и медалей. Используйте поиск и фильтры, чтобы найти то, что вам нужно.',
       details: [
-        'Browse by category: Coins, Stamps, or Medals',
-        'Use the search bar to find specific items',
-        'Filter by price, condition, or era',
-        'View detailed product images and descriptions'
+        'Просматривайте по категориям: Монеты, Марки или Медали',
+        'Используйте строку поиска для поиска конкретных предметов',
+        'Фильтруйте по цене, состоянию или эпохе',
+        'Смотрите подробные изображения и описания товаров'
       ]
     },
     {
       icon: ShoppingCart,
-      title: 'Add Items to Cart',
-      description: 'Found something you like? Add it to your cart and continue shopping or proceed to checkout.',
+      title: 'Добавьте товары в корзину',
+      description: 'Нашли что-то интересное? Добавьте в корзину и продолжайте покупки или переходите к оформлению заказа.',
       details: [
-        'Click "Add to Cart" on any product page',
-        'Adjust quantities as needed',
-        'Review your cart before checkout',
-        'Items are saved for your session'
+        'Нажмите "Добавить в корзину" на странице товара',
+        'Изменяйте количество по необходимости',
+        'Проверьте корзину перед оформлением',
+        'Товары сохраняются на время вашей сессии'
       ]
     },
     {
       icon: CreditCard,
-      title: 'Choose Payment & Delivery',
-      description: 'Select your preferred payment method and delivery option during checkout.',
+      title: 'Выберите оплату и доставку',
+      description: 'Выберите удобный способ оплаты и доставки при оформлении заказа.',
       details: [
-        'Payment: Cash on Delivery, Bank Transfer, or Manual Payment',
-        'Delivery: Post delivery or pickup in Yerevan',
-        'Fill in your contact and delivery information',
-        'Add any special instructions in the notes section'
+        'Оплата: Оплата при получении, банковский перевод или ручная оплата',
+        'Доставка: Почтой или самовывоз в Ереване',
+        'Заполните контактные и адресные данные',
+        'Добавьте особые инструкции в поле для заметок'
       ]
     },
     {
       icon: Package,
-      title: 'Receive Your Order',
-      description: 'We\'ll process your order and get your collectibles to you safely and securely.',
+      title: 'Получите свой заказ',
+      description: 'Мы обработаем ваш заказ и доставим коллекционные предметы безопасно и надежно.',
       details: [
-        'Order processing: 2-3 business days',
-        'Email confirmation sent to both you and our team',
-        'Tracking information provided for postal deliveries',
-        'Secure packaging for all items'
+        'Обработка заказа: 2-3 рабочих дня',
+        'Подтверждение по email для вас и нашей команды',
+        'Трекинг для почтовых отправлений',
+        'Надежная упаковка всех товаров'
       ]
     }
   ];
@@ -55,10 +56,10 @@ export default function HowToOrderPage() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            How to Order
+          Как заказать
           </h1>
           <p className="text-lg text-gray-600">
-            Follow these simple steps to order your numismatic treasures from ArmNumiz
+          Следуйте этим простым шагам, чтобы заказать нумизматические сокровища в ArmNumiz
           </p>
         </div>
 
@@ -72,7 +73,7 @@ export default function HowToOrderPage() {
                   </div>
                   <div>
                     <div className="text-sm text-amber-600 font-semibold">Step {index + 1}</div>
-                    <div className="text-xl font-bold text-gray-900">{step.title}</div>
+                      <div className="text-xl font-bold text-gray-900">{step.title}</div>
                   </div>
                 </CardTitle>
               </CardHeader>
@@ -94,19 +95,19 @@ export default function HowToOrderPage() {
         <Card className="bg-gradient-to-r from-amber-50 to-red-50">
           <CardContent className="p-8 text-center">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Need Help?
+            Нужна помощь?
             </h2>
             <p className="text-gray-700 mb-6">
-              Our team is here to assist you with any questions about our products or ordering process.
+            Наша команда готова помочь вам с любыми вопросами о товарах или процессе заказа.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <div className="flex items-center gap-2 text-gray-700">
                 <Phone className="w-5 h-5 text-amber-600" />
-                <span>+374 55534555</span>
+                <span> +37494598281, +37477486483</span>
               </div>
               <div className="flex items-center gap-2 text-gray-700">
                 <Mail className="w-5 h-5 text-red-600" />
-                <span>arm.numiz@mail.ru</span>
+                <span>marketmycollection@gmail.com</span>
               </div>
             </div>
             <div className="mt-6">
@@ -114,7 +115,7 @@ export default function HowToOrderPage() {
                 href="/contact"
                 className="inline-block bg-red-600 text-white px-6 py-2 rounded-md hover:bg-red-700 transition-colors"
               >
-                Contact Us
+            Связаться с нами
               </Link>
             </div>
           </CardContent>

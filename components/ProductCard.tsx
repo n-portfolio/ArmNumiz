@@ -20,8 +20,8 @@ export function ProductCard({ product }: ProductCardProps) {
   const handleAddToCart = () => {
     addItem(product);
     toast({
-      title: 'Added to cart',
-      description: `${product.name} has been added to your cart.`,
+      title: 'Добавлено в корзину',
+      description: `${product.name} добавлен в вашу корзину.`,
     });
   };
 
@@ -36,44 +36,44 @@ export function ProductCard({ product }: ProductCardProps) {
 
   const getCategoryLabel = (category: string) => {
     switch (category) {
-      case 'coins': return 'Coins';
-      case 'stamps': return 'Stamps';
-      case 'medals': return 'Medals';
+      case 'coins': return 'Монеты';
+      case 'stamps': return 'Марки';
+      case 'medals': return 'Медали';
       default: return category;
     }
   };
 
   return (
-    <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300">
+    <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col">
       <div className="relative overflow-hidden">
         <Image
           src={product.image}
           alt={product.name}
           width={400}
           height={300}
-          className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
         />
         <Badge className={`absolute top-3 left-3 ${getCategoryColor(product.category)}`}>
           {getCategoryLabel(product.category)}
         </Badge>
       </div>
       
-      <CardContent className="p-4">
+      <CardContent className="p-4 flex-1 flex flex-col">
         <h3 className="font-semibold text-lg mb-2 line-clamp-2">
           {product.name}
         </h3>
-        <p className="text-gray-600 text-sm mb-3 line-clamp-3">
+        <p className="text-gray-600 text-sm mb-3 line-clamp-3 flex-1">
           {product.description}
         </p>
         <p className="text-2xl font-bold text-amber-600">
-          ${product.price.toFixed(2)}
+          ₽{product.price.toFixed(2)}
         </p>
       </CardContent>
       
-      <CardFooter className="p-4 pt-0 flex gap-2">
+      <CardFooter className="p-4 pt-0 flex gap-2 mt-auto">
         <Button asChild variant="outline" className="flex-1">
           <Link href={`/product/${product.id}`}>
-            View Details
+            Подробнее
           </Link>
         </Button>
         <Button onClick={handleAddToCart} className="bg-red-600 hover:bg-red-700">

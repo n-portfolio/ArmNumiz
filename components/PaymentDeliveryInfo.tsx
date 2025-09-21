@@ -7,10 +7,10 @@ export function PaymentDeliveryInfo() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Payment & Delivery
+              Оплата и доставка
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Flexible options to suit your preferences
+              Гибкие варианты на ваш выбор
           </p>
         </div>
 
@@ -19,7 +19,7 @@ export function PaymentDeliveryInfo() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <CreditCard className="w-6 h-6 text-amber-600" />
-                Payment Methods
+                  Способы оплаты
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -27,22 +27,22 @@ export function PaymentDeliveryInfo() {
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-amber-600 rounded-full mt-2"></div>
                   <div>
-                    <h4 className="font-semibold">Cash on Delivery</h4>
-                    <p className="text-gray-600 text-sm">Pay when you receive your order</p>
+                      <h4 className="font-semibold">Оплата при получении</h4>
+                      <p className="text-gray-600 text-sm">Оплата при получении заказа</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-red-600 rounded-full mt-2"></div>
                   <div>
-                    <h4 className="font-semibold">Bank Transfer</h4>
-                    <p className="text-gray-600 text-sm">Secure direct bank payment</p>
+                      <h4 className="font-semibold">Банковский перевод</h4>
+                      <p className="text-gray-600 text-sm">Безопасная оплата через банк</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-purple-600 rounded-full mt-2"></div>
                   <div>
-                    <h4 className="font-semibold">Manual Payment</h4>
-                    <p className="text-gray-600 text-sm">Arrange payment manually</p>
+                      <h4 className="font-semibold">Ручная оплата</h4>
+                      <p className="text-gray-600 text-sm">Договоритесь об оплате вручную</p>
                   </div>
                 </div>
               </div>
@@ -53,7 +53,7 @@ export function PaymentDeliveryInfo() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Truck className="w-6 h-6 text-red-600" />
-                Delivery Options
+                  Варианты доставки
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -61,22 +61,22 @@ export function PaymentDeliveryInfo() {
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-red-600 mt-1" />
                   <div>
-                    <h4 className="font-semibold">Pickup in Yerevan</h4>
-                    <p className="text-gray-600 text-sm">Free pickup from our office</p>
+                      <h4 className="font-semibold">Самовывоз в Ереване</h4>
+                      <p className="text-gray-600 text-sm">Бесплатный самовывоз из нашего офиса</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Truck className="w-5 h-5 text-amber-600 mt-1" />
                   <div>
-                    <h4 className="font-semibold">Post Delivery</h4>
-                    <p className="text-gray-600 text-sm">Reliable postal service delivery</p>
+                      <h4 className="font-semibold">Доставка почтой</h4>
+                      <p className="text-gray-600 text-sm">Надежная доставка почтой</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Clock className="w-5 h-5 text-purple-600 mt-1" />
                   <div>
-                    <h4 className="font-semibold">Processing Time</h4>
-                    <p className="text-gray-600 text-sm">2-3 business days processing</p>
+                      <h4 className="font-semibold">Время обработки</h4>
+                      <p className="text-gray-600 text-sm">2-3 рабочих дня на обработку</p>
                   </div>
                 </div>
               </div>

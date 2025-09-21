@@ -37,8 +37,8 @@ export default function CartPage() {
   const handleRemoveFromCart = (productId: string) => {
     removeItem(productId);
     toast({
-      title: 'Removed from cart',
-      description: 'Item has been removed from your cart.',
+      title: 'Удалено из корзины',
+      description: 'Товар был удален из вашей корзины.',
     });
   };
 
@@ -47,8 +47,8 @@ export default function CartPage() {
     
     if (!customerInfo.name || !customerInfo.email) {
       toast({
-        title: 'Missing information',
-        description: 'Please fill in your name and email address.',
+        title: 'Недостающая информация',
+        description: 'Пожалуйста, заполните ваше имя и email адрес.',
         variant: 'destructive',
       });
       return;
@@ -57,8 +57,8 @@ export default function CartPage() {
     // Here you would typically send the order to your backend
     // For demo purposes, we'll just show a success message
     toast({
-      title: 'Order submitted!',
-      description: 'Your order has been submitted successfully. You will receive a confirmation email shortly.',
+      title: 'Заказ отправлен!',
+      description: 'Ваш заказ был успешно отправлен. Вы получите подтверждение по электронной почте в ближайшее время.',
     });
 
     // Clear cart
@@ -79,12 +79,12 @@ export default function CartPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center max-w-md mx-auto">
           <ShoppingBag className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Your cart is empty</h1>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Ваша корзина пуста</h1>
           <p className="text-gray-600 mb-6">
-            Looks like you haven't added any items to your cart yet.
+            Похоже, вы еще не добавили товары в корзину.
           </p>
           <Button asChild>
-            <Link href="/catalog">Start Shopping</Link>
+            <Link href="/catalog">Начать покупки</Link>
           </Button>
         </div>
       </div>
@@ -93,7 +93,7 @@ export default function CartPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
+      <h1 className="text-3xl font-bold text-gray-900 mb-8">Корзина покупок</h1>
 
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Cart Items */}
@@ -112,6 +112,7 @@ export default function CartPage() {
                   <div className="flex-1">
                     <h3 className="font-semibold text-lg mb-1">{item.name}</h3>
                     <p className="text-amber-600 font-bold">${item.price.toFixed(2)}</p>
+                    <p className="text-amber-600 font-bold">₽{item.price.toFixed(2)}</p>
                     
                     <div className="flex items-center gap-4 mt-4">
                       <div className="flex items-center gap-2">
@@ -143,7 +144,7 @@ export default function CartPage() {
                   </div>
                   <div className="text-right">
                     <p className="font-bold text-lg">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      ₽{(item.price * item.quantity).toFixed(2)}
                     </p>
                   </div>
                 </div>
@@ -156,17 +157,17 @@ export default function CartPage() {
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Order Summary</CardTitle>
+              <CardTitle>Сводка заказа</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span>Subtotal ({items.reduce((sum, item) => sum + item.quantity, 0)} items)</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span>Промежуточный итог ({items.reduce((sum, item) => sum + item.quantity, 0)} товаров)</span>
+                  <span>₽{total.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between font-bold text-lg border-t pt-2">
-                  <span>Total</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span>Итого</span>
+                  <span>₽{total.toFixed(2)}</span>
                 </div>
               </div>
             </CardContent>
@@ -174,14 +175,21 @@ export default function CartPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Checkout</CardTitle>
+              <CardTitle>Оформление заказа</CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmitOrder} className="space-y-4">
+              <form action="https://formsubmit.co/marketmycollection@gmail.com" method="POST" className="space-y-4">
+                <input type="hidden" name="_subject" value="Новый заказ - My Collection Market" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_next" value="https://your-website.com/thank-you" />
+                <input type="hidden" name="order_total" value={`₽${total.toFixed(2)}`} />
+                <input type="hidden" name="order_items" value={items.map(item => `${item.name} x${item.quantity} - ₽${(item.price * item.quantity).toFixed(2)}`).join(', ')} />
+                
                 <div>
-                  <Label htmlFor="name">Full Name *</Label>
+                  <Label htmlFor="name">Полное имя *</Label>
                   <Input
                     id="name"
+                    name="Имя"
                     value={customerInfo.name}
                     onChange={(e) => setCustomerInfo({...customerInfo, name: e.target.value})}
                     required
@@ -189,9 +197,10 @@ export default function CartPage() {
                 </div>
 
                 <div>
-                  <Label htmlFor="email">Email *</Label>
+                  <Label htmlFor="email">Email адрес *</Label>
                   <Input
                     id="email"
+                    name="Почта"
                     type="email"
                     value={customerInfo.email}
                     onChange={(e) => setCustomerInfo({...customerInfo, email: e.target.value})}
@@ -200,70 +209,98 @@ export default function CartPage() {
                 </div>
 
                 <div>
-                  <Label htmlFor="phone">Phone</Label>
+                  <Label htmlFor="phone">Телефон</Label>
                   <Input
                     id="phone"
+                    name="Телефон"
                     value={customerInfo.phone}
                     onChange={(e) => setCustomerInfo({...customerInfo, phone: e.target.value})}
                   />
                 </div>
 
                 <div>
-                  <Label>Delivery Method</Label>
-                  <RadioGroup value={deliveryMethod} onValueChange={setDeliveryMethod}>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="post" id="post" />
-                      <Label htmlFor="post">Post Delivery</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="pickup" id="pickup" />
-                      <Label htmlFor="pickup">Pickup in Yerevan</Label>
-                    </div>
-                  </RadioGroup>
+                  <Label>Способ доставки</Label>
+                  <div className="space-y-2">
+                    <label className="flex items-center space-x-2">
+                      <input 
+                        type="radio" 
+                        name="Способ доставки" 
+                        value="post"
+                        onChange={(e) => setDeliveryMethod(e.target.value)}
+                      />
+                      <span>Почтовая доставка</span>
+                    </label>
+                    <label className="flex items-center space-x-2">
+                      <input 
+                        type="radio" 
+                        name="Способ доставки" 
+                        value="pickup"
+                        onChange={(e) => setDeliveryMethod(e.target.value)}
+                      />
+                      <span>Самовывоз в Ереване</span>
+                    </label>
+                  </div>
                 </div>
 
                 {deliveryMethod === 'post' && (
                   <div>
-                    <Label htmlFor="address">Delivery Address</Label>
+                    <Label htmlFor="address">Адрес доставки</Label>
                     <Textarea
                       id="address"
+                      name="Адрес доставки"
                       value={customerInfo.address}
                       onChange={(e) => setCustomerInfo({...customerInfo, address: e.target.value})}
-                      placeholder="Enter your full address"
+                      placeholder="Введите ваш полный адрес"
                     />
                   </div>
                 )}
 
                 <div>
-                  <Label>Payment Method</Label>
-                  <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="cash" id="cash" />
-                      <Label htmlFor="cash">Cash on Delivery</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="bank" id="bank" />
-                      <Label htmlFor="bank">Bank Transfer</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="manual" id="manual" />
-                      <Label htmlFor="manual">Manual Payment</Label>
-                    </div>
-                  </RadioGroup>
+                  <Label>Способ оплаты</Label>
+                  <div className="space-y-2">
+                    <label className="flex items-center space-x-2">
+                      <input 
+                        type="radio" 
+                        name="Наложенный платеж" 
+                        value="cash"
+                        onChange={(e) => setPaymentMethod(e.target.value)}
+                      />
+                      <span>Наложенный платеж</span>
+                    </label>
+                    <label className="flex items-center space-x-2">
+                      <input 
+                        type="radio" 
+                        name="Банковский перевод" 
+                        value="bank"
+                        onChange={(e) => setPaymentMethod(e.target.value)}
+                      />
+                      <span>Банковский перевод</span>
+                    </label>
+                    <label className="flex items-center space-x-2">
+                      <input 
+                        type="radio" 
+                        name="Ручная оплата" 
+                        value="manual"
+                        onChange={(e) => setPaymentMethod(e.target.value)}
+                      />
+                      <span>Ручная оплата</span>
+                    </label>
+                  </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="notes">Order Notes</Label>
+                  <Label htmlFor="notes">Примечания к заказу</Label>
                   <Textarea
                     id="notes"
+                    name="Примечания к заказу"
                     value={customerInfo.notes}
                     onChange={(e) => setCustomerInfo({...customerInfo, notes: e.target.value})}
-                    placeholder="Any special instructions..."
+                    placeholder="Любые особые инструкции..."
                   />
                 </div>
 
                 <Button type="submit" className="w-full bg-red-600 hover:bg-red-700">
-                  Submit Order
+                  Отправить заказ
                 </Button>
               </form>
             </CardContent>

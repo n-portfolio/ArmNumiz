@@ -22,20 +22,20 @@ export default function CatalogPage() {
   }, [searchTerm, selectedCategory]);
 
   const categories = [
-    { value: 'all', label: 'All Categories', count: sampleProducts.length },
-    { value: 'coins', label: 'Coins', count: sampleProducts.filter(p => p.category === 'coins').length },
-    { value: 'stamps', label: 'Stamps', count: sampleProducts.filter(p => p.category === 'stamps').length },
-    { value: 'medals', label: 'Medals', count: sampleProducts.filter(p => p.category === 'medals').length },
+    { value: 'all', label: 'Все категории', count: sampleProducts.length },
+    { value: 'coins', label: 'Монеты', count: sampleProducts.filter(p => p.category === 'coins').length },
+    { value: 'stamps', label: 'Марки', count: sampleProducts.filter(p => p.category === 'stamps').length },
+    { value: 'medals', label: 'Медали', count: sampleProducts.filter(p => p.category === 'medals').length },
   ];
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Product Catalog
+         Каталог товаров
         </h1>
         <p className="text-lg text-gray-600">
-          Explore our complete collection of numismatic, philatelic, and faleristic treasures
+         Изучайте нашу полную коллекцию нумизматических, филателистических и фалеристических сокровищ
         </p>
       </div>
 
@@ -45,7 +45,7 @@ export default function CatalogPage() {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <Input
-              placeholder="Search products..."
+            placeholder="Поиск товаров..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
@@ -54,7 +54,7 @@ export default function CatalogPage() {
           
           <div className="flex items-center gap-2">
             <Filter className="w-4 h-4 text-gray-500" />
-            <span className="text-sm text-gray-500">Filter by:</span>
+              <span className="text-sm text-gray-500">Фильтр по:</span>
           </div>
         </div>
 
@@ -84,10 +84,10 @@ export default function CatalogPage() {
 
       {filteredProducts.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-lg text-gray-600 mb-4">No products found matching your criteria.</p>
-          <Button onClick={() => { setSearchTerm(''); setSelectedCategory('all'); }}>
-            Clear Filters
-          </Button>
+            <p className="text-lg text-gray-600 mb-4">Товары, соответствующие вашему запросу, не найдены.</p>
+            <Button onClick={() => { setSearchTerm(''); setSelectedCategory('all'); }}>
+              Сбросить фильтры
+            </Button>
         </div>
       )}
     </div>

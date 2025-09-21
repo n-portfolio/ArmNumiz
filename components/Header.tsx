@@ -19,15 +19,15 @@ export function Header() {
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-1">
                 <Mail className="w-4 h-4" />
-                <span>arm.numiz@mail.ru</span>
+                <span>marketmycollection@gmail.com</span>
               </div>
               <div className="flex items-center gap-1">
                 <MapPin className="w-4 h-4" />
-                <span>Yerevan, Armenia</span>
+                <span>Ереван, Армения</span>
               </div>
             </div>
             <div className="text-amber-200">
-              ☎ +374 55534555
+              ☎ 094598281, 077486483
             </div>
           </div>
         </div>
@@ -37,33 +37,33 @@ export function Header() {
           <Link href="/" className="flex items-center gap-2">
             <Coins className="w-8 h-8 text-amber-300" />
             <div>
-              <h1 className="text-2xl font-bold text-amber-100">ArmNumiz</h1>
-              <p className="text-xs text-amber-300">Numismatics • Philately • Faleristics</p>
+              <h1 className="text-2xl font-bold text-amber-100">My Collection Market</h1>
+              <p className="text-xs text-amber-300">Нумизматика • Филателия • Фалеристика</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
             <Link href="/" className="hover:text-amber-300 transition-colors">
-              Home
+              Главная
             </Link>
             <Link href="/catalog" className="hover:text-amber-300 transition-colors">
-              Catalog
+              Каталог
             </Link>
             <Link href="/how-to-order" className="hover:text-amber-300 transition-colors">
-              How to Order
+              Как заказать
             </Link>
             <Link href="/payment" className="hover:text-amber-300 transition-colors">
-              Payment
+              Оплата
             </Link>
             <Link href="/delivery" className="hover:text-amber-300 transition-colors">
-              Delivery
+              Доставка
             </Link>
             <Link href="/buy-sell" className="hover:text-amber-300 transition-colors">
-              Buy/Sell
+              Купить/Продать
             </Link>
             <Link href="/contact" className="hover:text-amber-300 transition-colors">
-              Contact
+              Контакты
             </Link>
           </nav>
 
@@ -92,25 +92,25 @@ export function Header() {
           <nav className="md:hidden py-4 border-t border-amber-800/50">
             <div className="flex flex-col gap-4">
               <Link href="/" className="hover:text-amber-300 transition-colors">
-                Home
+                Главная
               </Link>
               <Link href="/catalog" className="hover:text-amber-300 transition-colors">
-                Catalog
+                Каталог
               </Link>
               <Link href="/how-to-order" className="hover:text-amber-300 transition-colors">
-                How to Order
+                Как заказать
               </Link>
               <Link href="/payment" className="hover:text-amber-300 transition-colors">
-                Payment
+                Оплата
               </Link>
               <Link href="/delivery" className="hover:text-amber-300 transition-colors">
-                Delivery
+                Доставка
               </Link>
               <Link href="/buy-sell" className="hover:text-amber-300 transition-colors">
-                Buy/Sell
+                Купить/Продать
               </Link>
               <Link href="/contact" className="hover:text-amber-300 transition-colors">
-                Contact
+                Контакты
               </Link>
             </div>
           </nav>

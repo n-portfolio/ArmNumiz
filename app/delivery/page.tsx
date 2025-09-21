@@ -3,31 +3,32 @@ import { Truck, MapPin, Clock, Package, Shield, CheckCircle } from 'lucide-react
 
 export default function DeliveryPage() {
   const deliveryOptions = [
+    // ...existing code...
     {
       icon: Truck,
-      title: 'Post Delivery',
-      description: 'Reliable postal service to your address',
+      title: 'Доставка почтой',
+      description: 'Надежная доставка почтой по вашему адресу',
       details: [
-        'Available throughout Armenia and internationally',
-        'Secure packaging with tracking number',
-        'Delivery time: 3-7 business days within Armenia',
-        'Insurance coverage for valuable items'
+        'Доступно по всей Армении и за рубежом',
+        'Безопасная упаковка с трекинг-номером',
+        'Срок доставки: 3-7 рабочих дней по Армении',
+        'Страхование ценных предметов'
       ],
-      pricing: 'Calculated based on weight and destination',
-      timeline: '3-7 business days'
+      pricing: 'Рассчитывается по весу и направлению',
+      timeline: '3-7 рабочих дней'
     },
     {
       icon: MapPin,
-      title: 'Pickup in Yerevan',
-      description: 'Collect your order from our office',
+      title: 'Самовывоз в Ереване',
+      description: 'Заберите заказ из нашего офиса',
       details: [
-        'Free pickup option',
-        'Convenient Yerevan location',
-        'Flexible pickup hours by appointment',
-        'Inspect items before taking them'
+        'Бесплатный самовывоз',
+        'Удобное расположение в Ереване',
+        'Гибкое время по договоренности',
+        'Осмотрите товар перед получением'
       ],
-      pricing: 'Free',
-      timeline: 'Ready for pickup after order confirmation'
+      pricing: 'Бесплатно',
+      timeline: 'Готово к выдаче после подтверждения заказа'
     }
   ];
 
@@ -36,10 +37,10 @@ export default function DeliveryPage() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Delivery Information
+          Информация о доставке
           </h1>
           <p className="text-lg text-gray-600">
-            Choose the delivery method that works best for you
+          Выберите удобный способ доставки
           </p>
         </div>
 
@@ -58,15 +59,16 @@ export default function DeliveryPage() {
                   <div className="grid grid-cols-2 gap-4 text-center">
                     <div className="bg-gray-50 p-3 rounded-lg">
                       <div className="text-sm text-gray-600">Cost</div>
-                      <div className="font-semibold text-amber-600">{option.pricing}</div>
+                        <div className="font-semibold text-amber-600">{option.pricing}</div>
                     </div>
                     <div className="bg-gray-50 p-3 rounded-lg">
                       <div className="text-sm text-gray-600">Timeline</div>
-                      <div className="font-semibold text-red-600">{option.timeline}</div>
+                        <div className="font-semibold text-red-600">{option.timeline}</div>
                     </div>
                   </div>
                   <div>
                     <h4 className="font-semibold mb-2">Features:</h4>
+                      <h4 className="font-semibold mb-2">Особенности:</h4>
                     <ul className="space-y-1">
                       {option.details.map((detail, detailIndex) => (
                         <li key={detailIndex} className="flex items-start gap-2 text-sm">
@@ -87,9 +89,9 @@ export default function DeliveryPage() {
             <CardContent className="p-6">
               <Package className="w-12 h-12 text-amber-600 mx-auto mb-3" />
               <h3 className="font-semibold mb-2">Secure Packaging</h3>
-              <p className="text-gray-600 text-sm">
-                All items are carefully packaged with protective materials to ensure safe delivery.
-              </p>
+                <p className="text-gray-600 text-sm">
+                  Все товары тщательно упаковываются с защитными материалами для безопасной доставки.
+                </p>
             </CardContent>
           </Card>
 
@@ -97,9 +99,9 @@ export default function DeliveryPage() {
             <CardContent className="p-6">
               <Clock className="w-12 h-12 text-red-600 mx-auto mb-3" />
               <h3 className="font-semibold mb-2">Processing Time</h3>
-              <p className="text-gray-600 text-sm">
-                Orders are processed within 2-3 business days before shipping or pickup.
-              </p>
+                <p className="text-gray-600 text-sm">
+                  Заказы обрабатываются в течение 2-3 рабочих дней до отправки или самовывоза.
+                </p>
             </CardContent>
           </Card>
 
@@ -107,9 +109,9 @@ export default function DeliveryPage() {
             <CardContent className="p-6">
               <Shield className="w-12 h-12 text-purple-600 mx-auto mb-3" />
               <h3 className="font-semibold mb-2">Insurance</h3>
-              <p className="text-gray-600 text-sm">
-                High-value items are automatically insured during transit for your peace of mind.
-              </p>
+                <p className="text-gray-600 text-sm">
+                  Ценные товары автоматически страхуются на время доставки для вашего спокойствия.
+                </p>
             </CardContent>
           </Card>
         </div>
@@ -125,22 +127,23 @@ export default function DeliveryPage() {
             <div className="space-y-4">
               <div>
                 <h4 className="font-semibold mb-2">Address:</h4>
-                <p className="text-gray-700">Yerevan, Armenia</p>
-                <p className="text-sm text-gray-600">Exact address will be provided after order confirmation</p>
+               <p className="text-gray-700">Ереван, Армения</p>
+               <p className="text-sm text-gray-600">Точный адрес будет предоставлен после подтверждения заказа</p>
               </div>
               <div>
                 <h4 className="font-semibold mb-2">Contact Information:</h4>
+               <h4 className="font-semibold mb-2">Контактная информация:</h4>
                 <div className="space-y-1 text-gray-700">
-                  <p>📧 arm.numiz@mail.ru</p>
-                  <p>📞 +374 55534555</p>
+                  <p>📧 marketmycollection@gmail.com</p>
+                  <p>📞  +37494598281, +37477486483</p>
                 </div>
               </div>
               <div>
                 <h4 className="font-semibold mb-2">Pickup Hours:</h4>
-                <p className="text-gray-700">By appointment only</p>
-                <p className="text-sm text-gray-600">
-                  Please contact us to schedule a convenient pickup time
-                </p>
+                    <p className="text-gray-700">Только по предварительной договоренности</p>
+                    <p className="text-sm text-gray-600">
+                      Пожалуйста, свяжитесь с нами для согласования времени самовывоза
+                    </p>
               </div>
             </div>
           </CardContent>
@@ -149,29 +152,27 @@ export default function DeliveryPage() {
         <Card className="mt-8">
           <CardHeader>
             <CardTitle>Shipping Policy</CardTitle>
+              <CardTitle>Политика доставки</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div>
                 <h4 className="font-semibold mb-2">Order Confirmation</h4>
-                <p className="text-gray-700">
-                  You will receive an email confirmation immediately after placing your order, 
-                  followed by another notification when your order is processed and ready for delivery.
-                </p>
+                    <p className="text-gray-700">
+                      Вы получите подтверждение заказа по email сразу после оформления, а также уведомление, когда заказ будет обработан и готов к доставке.
+                    </p>
               </div>
               <div>
                 <h4 className="font-semibold mb-2">Tracking Information</h4>
-                <p className="text-gray-700">
-                  For postal deliveries, tracking information will be provided via email once your 
-                  package has been dispatched.
-                </p>
+                    <p className="text-gray-700">
+                      Для почтовых отправлений трекинг-номер будет предоставлен по email после отправки посылки.
+                    </p>
               </div>
               <div>
                 <h4 className="font-semibold mb-2">Delivery Attempts</h4>
-                <p className="text-gray-700">
-                  If delivery is unsuccessful, the postal service will make additional attempts or 
-                  hold the package for pickup at the local post office.
-                </p>
+                    <p className="text-gray-700">
+                      Если доставка не удалась, почта предпримет дополнительные попытки или оставит посылку для самовывоза в отделении.
+                    </p>
               </div>
             </div>
           </CardContent>
