@@ -8,6 +8,7 @@ export interface Product {
   id: string
   name: string
   price: number
+  currency: string
   image: string
   category: "coins" | "stamps" | "medals"
   description: string

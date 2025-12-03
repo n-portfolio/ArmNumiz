@@ -67,6 +67,7 @@ export function FeaturedProducts() {
               product={{
                 ...product,
                 price: parseFloat(product.price),
+                currency: (product as any).currency || 'RUB',
                 id: product.id.toString(),
               }}
             />

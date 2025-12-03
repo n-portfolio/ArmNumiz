@@ -34,13 +34,14 @@ export async function PUT(
 
         const productId = parseInt(params.id);
         const body = await request.json();
-        const { name, price, image, category, description } = body;
+        const { name, price, currency, image, category, description } = body;
 
         const updatedProduct = await db
             .update(products)
             .set({
                 name,
                 price: price.toString(),
+                currency: currency || 'RUB',
                 image,
                 category,
                 description,

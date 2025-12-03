@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
-        const { name, price, image, category, description } = body;
+        const { name, price, currency, image, category, description } = body;
 
         // Simple authentication check - in production, use proper JWT or session
         const isAdmin = request.headers.get('x-admin-auth') === 'true';
@@ -41,6 +41,7 @@ export async function POST(request: NextRequest) {
         const newProduct = await db.insert(products).values({
             name,
             price: price.toString(),
+            currency: currency || 'RUB',
             image,
             category,
             description,

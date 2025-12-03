@@ -1,0 +1,1 @@
+ALTER TABLE "products" ADD COLUMN "currency" text DEFAULT 'RUB' NOT NULL;

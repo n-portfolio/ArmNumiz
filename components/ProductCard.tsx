@@ -43,6 +43,16 @@ export function ProductCard({ product }: ProductCardProps) {
     }
   };
 
+  const getCurrencySymbol = (currency: string) => {
+    switch (currency) {
+      case 'RUB': return '₽';
+      case 'AMD': return '֏';
+      case 'USD': return '$';
+      case 'EUR': return '€';
+      default: return '₽';
+    }
+  };
+
   return (
     <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col">
       <div className="relative overflow-hidden">
@@ -57,7 +67,7 @@ export function ProductCard({ product }: ProductCardProps) {
           {getCategoryLabel(product.category)}
         </Badge>
       </div>
-      
+
       <CardContent className="p-4 flex-1 flex flex-col">
         <h3 className="font-semibold text-lg mb-2 line-clamp-2">
           {product.name}
@@ -66,10 +76,10 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.description}
         </p>
         <p className="text-2xl font-bold text-amber-600">
-          ₽{product.price.toFixed(2)}
+          {product.price.toFixed(2)} {getCurrencySymbol(product.currency)}
         </p>
       </CardContent>
-      
+
       <CardFooter className="p-4 pt-0 flex gap-2 mt-auto">
         <Button asChild variant="outline" className="flex-1">
           <Link href={`/product/${product.id}`}>

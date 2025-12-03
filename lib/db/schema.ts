@@ -4,6 +4,7 @@ export const products = pgTable('products', {
     id: serial('id').primaryKey(),
     name: text('name').notNull(),
     price: decimal('price', { precision: 10, scale: 2 }).notNull(),
+    currency: text('currency').default('RUB').notNull(),
     image: text('image').notNull(),
     category: text('category').notNull(),
     description: text('description').notNull(),

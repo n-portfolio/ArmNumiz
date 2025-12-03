@@ -13,6 +13,7 @@ interface Product {
     id: number;
     name: string;
     price: string;
+    currency: string;
     image: string;
     category: string;
     description: string;
@@ -89,6 +90,7 @@ export function ProductList() {
             id: product.id,
             name: product.name,
             price: parseFloat(product.price),
+            currency: product.currency || 'RUB',
             image: product.image,
             category: product.category,
             description: product.description,
@@ -116,6 +118,16 @@ export function ProductList() {
             case 'stamps': return 'Марки';
             case 'medals': return 'Медали';
             default: return category;
+        }
+    };
+
+    const getCurrencySymbol = (currency: string) => {
+        switch (currency) {
+            case 'RUB': return '₽';
+            case 'AMD': return '֏';
+            case 'USD': return '$';
+            case 'EUR': return '€';
+            default: return '₽';
         }
     };
 
@@ -149,7 +161,7 @@ export function ProductList() {
                                 <TableRow key={product.id}>
                                     <TableCell>{product.id}</TableCell>
                                     <TableCell className="font-medium">{product.name}</TableCell>
-                                    <TableCell>₽{parseFloat(product.price).toFixed(2)}</TableCell>
+                                    <TableCell>{parseFloat(product.price).toFixed(2)} {getCurrencySymbol(product.currency)}</TableCell>
                                     <TableCell>{getCategoryLabel(product.category)}</TableCell>
                                     <TableCell className="text-right">
                                         <div className="flex gap-2 justify-end">

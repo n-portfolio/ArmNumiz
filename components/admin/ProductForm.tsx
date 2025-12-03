@@ -12,6 +12,7 @@ interface Product {
     id?: number;
     name: string;
     price: number;
+    currency: string;
     image: string;
     category: string;
     description: string;
@@ -27,6 +28,7 @@ export function ProductForm({ product, onSuccess, onCancel }: ProductFormProps) 
     const [formData, setFormData] = useState<Product>({
         name: '',
         price: 0,
+        currency: 'RUB',
         image: '',
         category: 'coins',
         description: '',
@@ -95,17 +97,37 @@ export function ProductForm({ product, onSuccess, onCancel }: ProductFormProps) 
                 />
             </div>
 
-            <div>
-                <Label htmlFor="price">Цена (₽)</Label>
-                <Input
-                    id="price"
-                    type="number"
-                    step="0.01"
-                    value={formData.price}
-                    onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) })}
-                    required
-                    disabled={loading}
-                />
+            <div className="grid grid-cols-2 gap-4">
+                <div>
+                    <Label htmlFor="price">Цена</Label>
+                    <Input
+                        id="price"
+                        type="number"
+                        step="0.01"
+                        value={formData.price}
+                        onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) })}
+                        required
+                        disabled={loading}
+                    />
+                </div>
+                <div>
+                    <Label htmlFor="currency">Валюта</Label>
+                    <Select
+                        value={formData.currency}
+                        onValueChange={(value) => setFormData({ ...formData, currency: value })}
+                        disabled={loading}
+                    >
+                        <SelectTrigger>
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="RUB">RUB (₽)</SelectItem>
+                            <SelectItem value="AMD">AMD (֏)</SelectItem>
+                            <SelectItem value="USD">USD ($)</SelectItem>
+                            <SelectItem value="EUR">EUR (€)</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
             </div>
 
             <div>

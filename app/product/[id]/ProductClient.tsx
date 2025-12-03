@@ -15,6 +15,7 @@ interface Product {
   id: number;
   name: string;
   price: string;
+  currency: string;
   image: string;
   category: 'coins' | 'stamps' | 'medals';
   description: string;
@@ -69,6 +70,7 @@ export default function ProductClient() {
     const productForCart = {
       ...product,
       price: parseFloat(product.price),
+      currency: product.currency || 'RUB',
       id: product.id.toString(),
     }
     for (let i = 0; i < quantity; i++) {
@@ -106,6 +108,16 @@ export default function ProductClient() {
     }
   }
 
+  const getCurrencySymbol = (currency: string) => {
+    switch (currency) {
+      case 'RUB': return '₽';
+      case 'AMD': return '֏';
+      case 'USD': return '$';
+      case 'EUR': return '€';
+      default: return '₽';
+    }
+  };
+
   const price = parseFloat(product.price)
 
   return (
@@ -138,7 +150,7 @@ export default function ProductClient() {
         <div className="space-y-6">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
-            <p className="text-2xl font-bold text-amber-600 mb-4">{price.toFixed(2)} ₽</p>
+            <p className="text-2xl font-bold text-amber-600 mb-4">{price.toFixed(2)} {getCurrencySymbol(product.currency || 'RUB')}</p>
           </div>
 
           <div>
@@ -165,7 +177,7 @@ export default function ProductClient() {
                 </div>
                 <div className="flex-1">
                   <div className="text-sm text-gray-600">Общая стоимость</div>
-                  <div className="text-xl font-bold text-amber-600">{(price * quantity).toFixed(2)} ₽</div>
+                  <div className="text-xl font-bold text-amber-600">{(price * quantity).toFixed(2)} {getCurrencySymbol(product.currency || 'RUB')}</div>
                 </div>
               </div>
 
