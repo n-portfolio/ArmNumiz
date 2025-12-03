@@ -7,7 +7,8 @@ export const sampleProducts: Product[] = [
     price: 4500.00,
     image: 'https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg',
     category: 'coins',
-    description: 'Памятная монета в честь независимости Армении. Отличное состояние с оригинальным блеском.'
+    description: 'Памятная монета в честь независимости Армении. Отличное состояние с оригинальным блеском.',
+    currency: 'AMD',
   },
   {
     id: '2',
@@ -15,7 +16,8 @@ export const sampleProducts: Product[] = [
     price: 7500.00,
     image: 'https://images.pexels.com/photos/6292302/pexels-photo-6292302.jpeg',
     category: 'stamps',
-    description: 'Полный набор марок периода Советской Армении. Редкий коллекционный предмет в идеальном состоянии.'
+    description: 'Полный набор марок периода Советской Армении. Редкий коллекционный предмет в идеальном состоянии.',
+    currency: 'AMD',
   },
   {
     id: '3',
@@ -23,7 +25,8 @@ export const sampleProducts: Product[] = [
     price: 32000.00,
     image: 'https://images.pexels.com/photos/8828474/pexels-photo-8828474.jpeg',
     category: 'medals',
-    description: 'Редкая церковная награда Армянской Апостольской Церкви. Историческое значение.'
+    description: 'Редкая церковная награда Армянской Апостольской Церкви. Историческое значение.',
+    currency: 'AMD',
   },
   {
     id: '4',
@@ -31,7 +34,8 @@ export const sampleProducts: Product[] = [
     price: 8500.00,
     image: 'https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg',
     category: 'coins',
-    description: 'Серебряная памятная монета с изображением горы Арарат. Ограниченный тираж, безупречное состояние.'
+    description: 'Серебряная памятная монета с изображением горы Арарат. Ограниченный тираж, безупречное состояние.',
+    currency: 'AMD',
   },
   {
     id: '5',
@@ -39,7 +43,8 @@ export const sampleProducts: Product[] = [
     price: 18000.00,
     image: 'https://images.pexels.com/photos/6292302/pexels-photo-6292302.jpeg',
     category: 'stamps',
-    description: 'Исторические марки Первой Республики Армения (1918-1920). Музейное качество.'
+    description: 'Исторические марки Первой Республики Армения (1918-1920). Музейное качество.',
+    currency: 'AMD',
   },
   {
     id: '6',
@@ -47,7 +52,8 @@ export const sampleProducts: Product[] = [
     price: 15000.00,
     image: 'https://images.pexels.com/photos/8828474/pexels-photo-8828474.jpeg',
     category: 'medals',
-    description: 'Современная армянская военная награда. Поставляется с оригинальным сертификатом и футляром.'
+    description: 'Современная армянская военная награда. Поставляется с оригинальным сертификатом и футляром.',
+    currency: 'AMD',
   },
   {
     id: '7',
@@ -55,7 +61,8 @@ export const sampleProducts: Product[] = [
     price: 45000.00,
     image: 'https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg',
     category: 'coins',
-    description: 'Редкие древние монеты Армянского царства. Археологическое значение.'
+    description: 'Редкие древние монеты Армянского царства. Археологическое значение.',
+    currency: 'AMD',
   },
   {
     id: '8',
@@ -63,7 +70,8 @@ export const sampleProducts: Product[] = [
     price: 9500.00,
     image: 'https://images.pexels.com/photos/6292302/pexels-photo-6292302.jpeg',
     category: 'stamps',
-    description: 'Красивая серия, демонстрирующая армянское культурное наследие и традиции.'
+    description: 'Красивая серия, демонстрирующая армянское культурное наследие и традиции.',
+    currency: 'AMD',
   },
   {
     id: '9',
@@ -71,6 +79,7 @@ export const sampleProducts: Product[] = [
     price: 12000.00,
     image: 'https://images.pexels.com/photos/8828474/pexels-photo-8828474.jpeg',
     category: 'medals',
-    description: 'Почетная медаль за службу ветерана. Включает ленту и документацию.'
+    description: 'Почетная медаль за службу ветерана. Включает ленту и документацию.',
+    currency: 'AMD',
   }
 ];
