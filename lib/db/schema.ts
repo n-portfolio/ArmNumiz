@@ -19,7 +19,16 @@ export const admins = pgTable('admins', {
     createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
+export const categories = pgTable('categories', {
+    id: serial('id').primaryKey(),
+    name: text('name').notNull().unique(),
+    slug: text('slug').notNull().unique(),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
 export type Product = typeof products.$inferSelect;
 export type NewProduct = typeof products.$inferInsert;
 export type Admin = typeof admins.$inferSelect;
 export type NewAdmin = typeof admins.$inferInsert;
+export type Category = typeof categories.$inferSelect;
+export type NewCategory = typeof categories.$inferInsert;

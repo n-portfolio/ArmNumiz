@@ -16,30 +16,45 @@ interface Product {
   description: string;
 }
 
+interface Category {
+  id: number;
+  name: string;
+  slug: string;
+}
+
 export default function CatalogPage() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   useEffect(() => {
-    fetch('/api/products')
-      .then((res) => res.json())
-      .then((data) => {
-        // Ensure data is an array
-        if (Array.isArray(data)) {
-          setProducts(data);
-        } else {
-          console.error('API returned non-array data:', data);
-          setProducts([]);
+    const fetchData = async () => {
+      try {
+        const [productsRes, categoriesRes] = await Promise.all([
+          fetch('/api/products'),
+          fetch('/api/categories')
+        ]);
+
+        const productsData = await productsRes.json();
+        const categoriesData = await categoriesRes.json();
+
+        if (Array.isArray(productsData)) {
+          setProducts(productsData);
         }
+
+        if (Array.isArray(categoriesData)) {
+          setCategories(categoriesData);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
         setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching products:', error);
-        setProducts([]);
-        setLoading(false);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   const filteredProducts = useMemo(() => {
@@ -51,12 +66,23 @@ export default function CatalogPage() {
     });
   }, [products, searchTerm, selectedCategory]);
 
-  const categories = [
+  const categoryFilters = [
     { value: 'all', label: 'Все категории', count: products.length },
-    { value: 'coins', label: 'Монеты', count: products.filter(p => p.category === 'coins').length },
-    { value: 'stamps', label: 'Марки', count: products.filter(p => p.category === 'stamps').length },
-    { value: 'medals', label: 'Медали', count: products.filter(p => p.category === 'medals').length },
+    ...categories.map(cat => ({
+      value: cat.slug,
+      label: cat.name,
+      count: products.filter(p => p.category === cat.slug).length
+    }))
   ];
+
+  // Fallback if no categories exist yet
+  if (categories.length === 0) {
+    categoryFilters.push(
+      { value: 'coins', label: 'Монеты', count: products.filter(p => p.category === 'coins').length },
+      { value: 'stamps', label: 'Марки', count: products.filter(p => p.category === 'stamps').length },
+      { value: 'medals', label: 'Медали', count: products.filter(p => p.category === 'medals').length }
+    );
+  }
 
   if (loading) {
     return (
@@ -97,7 +123,7 @@ export default function CatalogPage() {
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {categories.map((category) => (
+          {categoryFilters.map((category) => (
             <Button
               key={category.value}
               variant={selectedCategory === category.value ? 'default' : 'outline'}

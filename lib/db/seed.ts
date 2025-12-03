@@ -31,6 +31,7 @@ async function main() {
     const productsToInsert = sampleProducts.map((product) => ({
         name: product.name,
         price: product.price.toString(),
+        currency: 'RUB',
         image: product.image,
         category: product.category,
         description: product.description,

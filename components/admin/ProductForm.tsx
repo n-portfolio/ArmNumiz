@@ -18,6 +18,12 @@ interface Product {
     description: string;
 }
 
+interface Category {
+    id: number;
+    name: string;
+    slug: string;
+}
+
 interface ProductFormProps {
     product?: Product;
     onSuccess: () => void;
@@ -30,17 +36,80 @@ export function ProductForm({ product, onSuccess, onCancel }: ProductFormProps) 
         price: 0,
         currency: 'RUB',
         image: '',
-        category: 'coins',
+        category: '',
         description: '',
     });
+    const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(false);
+    const [newCategoryName, setNewCategoryName] = useState('');
+    const [isAddingCategory, setIsAddingCategory] = useState(false);
     const { toast } = useToast();
+
+    useEffect(() => {
+        fetchCategories();
+    }, []);
 
     useEffect(() => {
         if (product) {
             setFormData(product);
         }
     }, [product]);
+
+    const fetchCategories = async () => {
+        try {
+            const response = await fetch('/api/categories');
+            if (response.ok) {
+                const data = await response.json();
+                setCategories(data);
+                // Set default category if not set and categories exist
+                if (!formData.category && data.length > 0 && !product) {
+                    setFormData(prev => ({ ...prev, category: data[0].slug }));
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+        }
+    };
+
+    const handleAddCategory = async () => {
+        if (!newCategoryName.trim()) return;
+
+        try {
+            const slug = newCategoryName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            const response = await fetch('/api/categories', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-admin-auth': 'true',
+                },
+                body: JSON.stringify({ name: newCategoryName, slug }),
+            });
+
+            if (response.ok) {
+                const newCategory = await response.json();
+                setCategories([...categories, newCategory]);
+                setFormData({ ...formData, category: newCategory.slug });
+                setNewCategoryName('');
+                setIsAddingCategory(false);
+                toast({
+                    title: 'Категория создана',
+                    description: `Категория "${newCategory.name}" успешно добавлена`,
+                });
+            } else {
+                toast({
+                    title: 'Ошибка',
+                    description: 'Не удалось создать категорию',
+                    variant: 'destructive',
+                });
+            }
+        } catch (error) {
+            toast({
+                title: 'Ошибка',
+                description: 'Не удалось подключиться к серверу',
+                variant: 'destructive',
+            });
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -143,21 +212,57 @@ export function ProductForm({ product, onSuccess, onCancel }: ProductFormProps) 
             </div>
 
             <div>
-                <Label htmlFor="category">Категория</Label>
-                <Select
-                    value={formData.category}
-                    onValueChange={(value) => setFormData({ ...formData, category: value })}
-                    disabled={loading}
-                >
-                    <SelectTrigger>
-                        <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="coins">Монеты</SelectItem>
-                        <SelectItem value="stamps">Марки</SelectItem>
-                        <SelectItem value="medals">Медали</SelectItem>
-                    </SelectContent>
-                </Select>
+                <div className="flex items-center justify-between mb-2">
+                    <Label htmlFor="category">Категория</Label>
+                    <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setIsAddingCategory(!isAddingCategory)}
+                        className="h-6 text-xs text-blue-600"
+                    >
+                        {isAddingCategory ? 'Отмена' : '+ Новая категория'}
+                    </Button>
+                </div>
+
+                {isAddingCategory ? (
+                    <div className="flex gap-2 mb-2">
+                        <Input
+                            placeholder="Название категории"
+                            value={newCategoryName}
+                            onChange={(e) => setNewCategoryName(e.target.value)}
+                            className="flex-1"
+                        />
+                        <Button type="button" onClick={handleAddCategory} size="sm">
+                            Добавить
+                        </Button>
+                    </div>
+                ) : (
+                    <Select
+                        value={formData.category}
+                        onValueChange={(value) => setFormData({ ...formData, category: value })}
+                        disabled={loading}
+                    >
+                        <SelectTrigger>
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {categories.map((category) => (
+                                <SelectItem key={category.id} value={category.slug}>
+                                    {category.name}
+                                </SelectItem>
+                            ))}
+                            {/* Fallback hardcoded categories if API fails or is empty initially */}
+                            {categories.length === 0 && (
+                                <>
+                                    <SelectItem value="coins">Монеты</SelectItem>
+                                    <SelectItem value="stamps">Марки</SelectItem>
+                                    <SelectItem value="medals">Медали</SelectItem>
+                                </>
+                            )}
+                        </SelectContent>
+                    </Select>
+                )}
             </div>
 
             <div>

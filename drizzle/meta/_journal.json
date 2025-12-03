@@ -15,6 +15,13 @@
       "when": 1764765451191,
       "tag": "0001_stale_ben_urich",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1764766350110,
+      "tag": "0002_workable_emma_frost",
+      "breakpoints": true
     }
   ]
 }
