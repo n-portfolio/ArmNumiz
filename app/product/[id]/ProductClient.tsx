@@ -1,32 +1,64 @@
 "use client"
 
 import { useParams } from "next/navigation"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { useCart } from "@/contexts/CartContext"
 import { useToast } from "@/hooks/use-toast"
-import { sampleProducts } from "@/lib/sampleData"
 import { ShoppingCart, ArrowLeft, Heart } from "lucide-react"
 import Link from "next/link"
+
+interface Product {
+  id: number;
+  name: string;
+  price: string;
+  image: string;
+  category: 'coins' | 'stamps' | 'medals';
+  description: string;
+}
 
 export default function ProductClient() {
   const params = useParams()
   const productId = params?.id as string
-  const product = sampleProducts.find((p) => p.id === productId)
+  const [product, setProduct] = useState<Product | null>(null)
+  const [loading, setLoading] = useState(true)
   const [quantity, setQuantity] = useState(1)
   const { addItem } = useCart()
   const { toast } = useToast()
+
+  useEffect(() => {
+    if (productId) {
+      fetch(`/api/products/${productId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setProduct(data)
+          setLoading(false)
+        })
+        .catch((error) => {
+          console.error('Error fetching product:', error)
+          setLoading(false)
+        })
+    }
+  }, [productId])
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-8 text-center">
+        <p className="text-lg text-gray-600">Загрузка товара...</p>
+      </div>
+    )
+  }
 
   if (!product) {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Товар не найден</h1>
-            <Link href="/catalog" className="text-white">
-              <Button>Назад к каталогу</Button>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Товар не найден</h1>
+          <Link href="/catalog" className="text-white">
+            <Button>Назад к каталогу</Button>
           </Link>
         </div>
       </div>
@@ -34,12 +66,17 @@ export default function ProductClient() {
   }
 
   const handleAddToCart = () => {
+    const productForCart = {
+      ...product,
+      price: parseFloat(product.price),
+      id: product.id.toString(),
+    }
     for (let i = 0; i < quantity; i++) {
-      addItem(product)
+      addItem(productForCart)
     }
     toast({
-        title: "Добавлено в корзину",
-        description: `${quantity} шт. ${product.name} добавлено в вашу корзину.`,
+      title: "Добавлено в корзину",
+      description: `${quantity} шт. ${product.name} добавлено в вашу корзину.`,
     })
   }
 
@@ -69,12 +106,14 @@ export default function ProductClient() {
     }
   }
 
+  const price = parseFloat(product.price)
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6">
         <Link href="/catalog" className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900">
           <ArrowLeft className="w-4 h-4" />
-            Назад к каталогу
+          Назад к каталогу
         </Link>
       </div>
 
@@ -98,13 +137,13 @@ export default function ProductClient() {
         {/* Product Details */}
         <div className="space-y-6">
           <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
-              <p className="text-2xl font-bold text-amber-600 mb-4">{product.price.toFixed(2)} ₽</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
+            <p className="text-2xl font-bold text-amber-600 mb-4">{price.toFixed(2)} ₽</p>
           </div>
 
           <div>
-              <h3 className="text-lg font-semibold mb-2">Описание</h3>
-              <p className="text-gray-700 leading-relaxed">{product.description}</p>
+            <h3 className="text-lg font-semibold mb-2">Описание</h3>
+            <p className="text-gray-700 leading-relaxed">{product.description}</p>
           </div>
 
           <Card>
@@ -112,7 +151,7 @@ export default function ProductClient() {
               <div className="flex items-center gap-4 mb-6">
                 <div>
                   <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-1">
-                      Количество
+                    Количество
                   </label>
                   <input
                     type="number"
@@ -125,15 +164,15 @@ export default function ProductClient() {
                   />
                 </div>
                 <div className="flex-1">
-                    <div className="text-sm text-gray-600">Общая стоимость</div>
-                    <div className="text-xl font-bold text-amber-600">{(product.price * quantity).toFixed(2)} ₽</div>
+                  <div className="text-sm text-gray-600">Общая стоимость</div>
+                  <div className="text-xl font-bold text-amber-600">{(price * quantity).toFixed(2)} ₽</div>
                 </div>
               </div>
 
               <div className="flex gap-4">
                 <Button onClick={handleAddToCart} className="flex-1 bg-red-600 hover:bg-red-700">
                   <ShoppingCart className="w-4 h-4 mr-2" />
-                    Добавить в корзину
+                  Добавить в корзину
                 </Button>
                 <Button variant="outline" className="px-4 bg-transparent">
                   <Heart className="w-4 h-4" />
@@ -143,23 +182,23 @@ export default function ProductClient() {
           </Card>
 
           <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="font-semibold mb-3">Информация о товаре</h3>
+            <h3 className="font-semibold mb-3">Информация о товаре</h3>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                  <span className="text-gray-600">Категория:</span>
+                <span className="text-gray-600">Категория:</span>
                 <span>{getCategoryLabel(product.category)}</span>
               </div>
               <div className="flex justify-between">
-                  <span className="text-gray-600">Состояние:</span>
-                  <span>Отличное</span>
+                <span className="text-gray-600">Состояние:</span>
+                <span>Отличное</span>
               </div>
               <div className="flex justify-between">
-                  <span className="text-gray-600">Подлинность:</span>
-                  <span>Проверено</span>
+                <span className="text-gray-600">Подлинность:</span>
+                <span>Проверено</span>
               </div>
               <div className="flex justify-between">
-                  <span className="text-gray-600">Доставка:</span>
-                  <span>2-3 рабочих дня</span>
+                <span className="text-gray-600">Доставка:</span>
+                <span>2-3 рабочих дня</span>
               </div>
             </div>
           </div>

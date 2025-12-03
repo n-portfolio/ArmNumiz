@@ -1,0 +1,2 @@
+2025-12-03T11:51:30.932Z: Auth request started
+2025-12-03T11:51:30.935Z: Error authenticating admin: Error: Page with `dynamic = "error"` couldn't be rendered statically because it used `request.json`.
